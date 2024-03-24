@@ -1,0 +1,24 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-DemoApplication<com.example-demo>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.example.demo.DemoApplication",
+            "projectName": "com.example-demo",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-TacoCloudApplication<sia-taco-cloud>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "sia.tacocloud.TacoCloudApplication",
+            "projectName": "sia-taco-cloud",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}

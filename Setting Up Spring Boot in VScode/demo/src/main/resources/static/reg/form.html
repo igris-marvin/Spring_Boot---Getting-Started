@@ -1,0 +1,33 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration form</title>
+    <style>
+        table, td {
+            border: 2px;
+            border-color: black;
+            border-style: solid;
+            border-collapse: collapse;
+        }
+    </style>
+</head>
+<body>
+    <h1>Registration Form</h1>
+    <form action="#" th:action="@{/greeting}" method="POST">
+        <Table>
+            <tr>
+                <td>username: </td>
+                <td><input type="text" th:name="username"></td>
+            </tr>
+            <tr>
+                <td>password: </td>
+                <td><input type="password" th:name="password"></td>
+            </tr>
+            <tr>
+                <td colspan="2"><input type="submit" value="Register"></td>
+            </tr>
+        </Table>
+    </form>
+</body>
+</html>

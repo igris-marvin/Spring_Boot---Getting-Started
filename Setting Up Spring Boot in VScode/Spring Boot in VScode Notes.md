@@ -19,3 +19,4 @@
 # git clone https://github.com/spring-guides/gs-rest-service.git
 
 Under the root folder of cloned or copied project, there are initial and complete folders. The initial folder contains initial code set, an empty project, making it possible for you to copy-and-paste your way through a guide. The complete folder contains complete code set where all the code from the guide already entered.
+
