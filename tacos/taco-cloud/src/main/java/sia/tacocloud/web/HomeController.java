@@ -8,7 +8,7 @@ public class HomeController {
     
     @GetMapping("/")  // This annotation maps the method to handle GET requests for the root ("/") path
     public String home() {
-        return "home"; // This is the logical view name, typically resolved by a view resolver
+        return "index"; // This is the logical view name, typically resolved by a view resolver
     }
 }
 
