@@ -16,7 +16,13 @@
 	<properties>
 		<java.version>17</java.version>
 	</properties>
-	<dependencies> 					<!-- Starter Dependencies -->
+	<dependencies>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+ 					<!-- Starter Dependencies -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>

@@ -1,9 +1,10 @@
-package sia.tacocloud.web;
+package sia.tacocloud.controller;
 
 import java.util.ArrayList;
 //import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -15,7 +16,6 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
-
 import sia.tacocloud.model.Ingredient;
 import sia.tacocloud.model.Ingredient.Type;
 import sia.tacocloud.model.Taco;
@@ -94,6 +94,6 @@ public class DesignTacoController {
         tacoOrder.addTaco(taco);
         log.info("Processing taco: {}", taco);
 
-        return "redirect: /orders/current"; //redirect request to path /orders/request
+        return "redirect:/orders/current"; //redirect request to path /orders/request
     }
 }

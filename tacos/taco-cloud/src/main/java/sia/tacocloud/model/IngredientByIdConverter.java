@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.core.convert.converter.Converter;
+import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Component;
 
 import sia.tacocloud.model.Ingredient.Type;
@@ -27,7 +28,7 @@ public class IngredientByIdConverter implements Converter<String, Ingredient> {
     }
  
     @Override
-    public Ingredient convert(String id) {
+    public Ingredient convert(@NonNull String id) {
         return ingredientMap.get(id);
     }
 }
