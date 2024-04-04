@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
+import sia.tacocloud.data.IngredientRepository;
 import sia.tacocloud.model.Ingredient;
 import sia.tacocloud.model.Ingredient.Type;
 import sia.tacocloud.model.Taco;
@@ -27,28 +29,26 @@ import sia.tacocloud.model.TacoOrder;
 @SessionAttributes("tacoOrder") // <- will be remembered later, creation of a taco is also the first step in creating an order, and the order we create will need to be carried in the session so that it can span multiple requests.
 public class DesignTacoController {
 
+    private IngredientRepository ingredientRepo;
+
+    @Autowired
+    public DesignTacoController(IngredientRepository ingredientRepo) {
+        this.ingredientRepo = ingredientRepo;
+    }
+
     @ModelAttribute
     public void addIngredientsToModel(Model model) {
-
-        List<Ingredient> ingredients = new ArrayList<>();
         
-        ingredients.add(new Ingredient("FLTO", "Flour Tortilla", Type.WRAP));
-        ingredients.add(new Ingredient("COTO", "Corn Tortilla", Type.WRAP));
-        ingredients.add(new Ingredient("GRBF", "Ground Beef", Type.PROTEIN));
-        ingredients.add(new Ingredient("CARN", "Carnitas", Type.PROTEIN));
-        ingredients.add(new Ingredient("TMTO", "Diced Tomatoes", Type.VEGGIES));
-        ingredients.add(new Ingredient("LETC", "Lettuce", Type.VEGGIES));
-        ingredients.add(new Ingredient("CHED", "Cheddar", Type.CHEESE));
-        ingredients.add(new Ingredient("JACK", "Monterrey Jack", Type.CHEESE));
-        ingredients.add(new Ingredient("SLSA", "Salsa", Type.SAUCE));
-        ingredients.add(new Ingredient("SRCR", "Sour Cream", Type.SAUCE));
+        Iterable<Ingredient> ingredients = ingredientRepo.findAll();
+
+        List<Ingredient> ingredientsList = (List<Ingredient>) ingredients;
         
         Type[] types = Ingredient.Type.values();
 
         for (Type type : types) { //iterates through all ingridients
             model.addAttribute(
                     type.toString().toLowerCase(), 
-                    filterByType(ingredients, type)
+                    filterByType(ingredientsList, type)
                 ); //adds attributes to model, filters ingridients to add to model
         }
     }
@@ -72,7 +72,9 @@ public class DesignTacoController {
     }
 
     private Iterable<Ingredient> filterByType(
-    List<Ingredient> ingredients, Type type) {
+        List<Ingredient> ingredients, 
+        Type type
+    ) {
 
         return ingredients
         .stream()
