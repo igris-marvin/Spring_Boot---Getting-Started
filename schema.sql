@@ -20,15 +20,15 @@ CREATE TABLE IF NOT EXISTS Taco (
     FOREIGN KEY (taco_order) REFERENCES Taco_Order(id)
 );
 
+CREATE TABLE IF NOT EXISTS Ingredient (
+    id VARCHAR(4) PRIMARY KEY,
+    name VARCHAR(25) NOT NULL,
+    type VARCHAR(10) NOT NULL
+);
+
 CREATE TABLE IF NOT EXISTS Ingredient_Ref (
     ingredient VARCHAR(4) NOT NULL,
     taco BIGINT NOT NULL,
     taco_key BIGINT NOT NULL,
     FOREIGN KEY (ingredient) REFERENCES Ingredient(id)
-);
-
-CREATE TABLE IF NOT EXISTS Ingredient (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(25) NOT NULL,
-    type VARCHAR(10) NOT NULL
 );

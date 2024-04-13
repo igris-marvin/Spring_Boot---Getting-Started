@@ -66,6 +66,7 @@ public class DesignTacoController {
 
     @GetMapping
     public String showDesignForm() {
+        System.out.println("Number of entities -> " + ingredientRepo.count());
 
         return "design";
     }
