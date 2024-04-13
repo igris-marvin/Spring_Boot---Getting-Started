@@ -1,5 +1,6 @@
 package sia.tacocloud.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.support.SessionStatus;
 
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
+import sia.tacocloud.data.OrderRepository;
 import sia.tacocloud.model.TacoOrder;
 
 @Slf4j
@@ -17,6 +19,13 @@ import sia.tacocloud.model.TacoOrder;
 @RequestMapping("/orders") // handle requests within path '/orders'
 @SessionAttributes("tacoOrder")
 public class OrderController {
+
+    private OrderRepository orderRepository;
+
+    @Autowired
+    public OrderController(OrderRepository orderRepository) {
+        this.orderRepository = orderRepository;
+    }
     
     @GetMapping("/current") //this method will handle the GET HTTP requests for path /orders/current
     public String orderForm() {
@@ -35,8 +44,8 @@ public class OrderController {
             return "order_form";
         }
 
-        log.info("Order submitted: {}", order);
-        sessionStatus.setComplete();
+        orderRepository.save(order); // save Taco Order object to database
+        sessionStatus.setComplete(); //terminate session
 
         return "redirect:/";
     }

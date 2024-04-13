@@ -1,7 +1,11 @@
 package sia.tacocloud.model;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+
+import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Table;
 
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -9,9 +13,12 @@ import lombok.Data;
 
 
 @Data
-public class Taco {
+@Table
+public class Taco implements Serializable {
     
+    @Id
     private Long id;
+    
     private Date createdAt = new Date();
     
     @NotNull

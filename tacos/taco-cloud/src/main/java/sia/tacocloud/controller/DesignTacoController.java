@@ -29,27 +29,26 @@ import sia.tacocloud.model.TacoOrder;
 @SessionAttributes("tacoOrder") // <- will be remembered later, creation of a taco is also the first step in creating an order, and the order we create will need to be carried in the session so that it can span multiple requests.
 public class DesignTacoController {
 
-    private IngredientRepository ingredientRepo;
+    private IngredientRepository ingredientRepo; //inject IngredientRepository into DesignController
 
     @Autowired
-    public DesignTacoController(IngredientRepository ingredientRepo) {
-        this.ingredientRepo = ingredientRepo;
+    public DesignTacoController(IngredientRepository ingredientRepo) { 
+        this.ingredientRepo = ingredientRepo; //initialize injected repository
     }
 
     @ModelAttribute
     public void addIngredientsToModel(Model model) {
         
         Iterable<Ingredient> ingredients = ingredientRepo.findAll();
-
         List<Ingredient> ingredientsList = (List<Ingredient>) ingredients;
         
         Type[] types = Ingredient.Type.values();
 
-        for (Type type : types) { //iterates through all ingridients
+        for (Type type : types) { //iterates through all ingredients
             model.addAttribute(
-                    type.toString().toLowerCase(), 
-                    filterByType(ingredientsList, type)
-                ); //adds attributes to model, filters ingridients to add to model
+                type.toString().toLowerCase(), // "hot"
+                filterByType(ingredientsList, type) // hot masala
+            ); //adds attributes to model, filters ingredients to add to model
         }
     }
 
