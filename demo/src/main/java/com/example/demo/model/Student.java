@@ -9,19 +9,21 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Entity
 @AllArgsConstructor
+@NoArgsConstructor
 public class Student implements Serializable {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idnum;
 
-    @Column
+    @Column(nullable = false, length = 20)
     private String name;
 
-    @Column
+    @Column(nullable = false, length = 50)
     private String course;
 }

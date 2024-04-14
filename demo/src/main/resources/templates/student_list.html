@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns="http:/ /www.w3.org/1999/xhtml" xmlns:th="http:/ /www.thymeleaf.org">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,18 +8,18 @@
     </head>
     <body>
         <h1>Student Details</h1>
-        <table>
+        <table th:object="${student}">
             <tr>
                 <td>ID: </td>
-                <td></td>
+                <td th:text="${student.idnum}">NO ID</td>
             </tr>
             <tr>
                 <td>Name: </td>
-                <td></td>
+                <td th:text="${student.name}">NO NAME</td>
             </tr>
             <tr>
                 <td>Course: </td>
-                <td></td>
+                <td th:text="${student.course}">NO COURSE</td>
             </tr>
         </table>
         <p>Click <a th:href="@{/}">here</a> to go back to home page</p>
