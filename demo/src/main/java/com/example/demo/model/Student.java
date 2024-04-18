@@ -2,6 +2,9 @@ package com.example.demo.model;
 
 import java.io.Serializable;
 
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -15,6 +18,8 @@ import lombok.NoArgsConstructor;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
+@DynamicInsert
+@DynamicUpdate
 public class Student implements Serializable {
     
     @Id
@@ -26,4 +31,8 @@ public class Student implements Serializable {
 
     @Column(nullable = false, length = 50)
     private String course;
+
+    public String toString() {
+        return "ID: " + idnum + "\nName: " + name + "\nCourse: " + course;
+    }
 }

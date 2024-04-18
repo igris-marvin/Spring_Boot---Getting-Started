@@ -8,19 +8,24 @@
     </head>
     <body>
         <h1>Student Details</h1>
-        <table th:object="${student}">
+        <table class="table container-sm" th:object="${students}">
             <tr>
-                <td>ID: </td>
-                <td th:text="${student.idnum}">NO ID</td>
+                <th>Student ID</th>
+                <th>Name</th>
+                <th>Course</th>
+                <th>Action</th>
             </tr>
-            <tr>
-                <td>Name: </td>
-                <td th:text="${student.name}">NO NAME</td>
-            </tr>
-            <tr>
-                <td>Course: </td>
-                <td th:text="${student.course}">NO COURSE</td>
-            </tr>
+            <div th:each="s : ${students}">
+                <tr>
+                    <td th:text="${s.idnum}">NO ID</td>
+                    <td th:text="${s.name}">NO NAME</td>
+                    <td th:text="${s.course}">NO COURSE</td>
+                    <td>
+                        <a th:href="@{'/student/delete?deleteid= ' + ${s.idnum}}">Delete</a>
+                        <a th:href="@{'/student/update?updateid= ' + ${s.idnum}}">Update</a>
+                    </td>
+                </tr>
+            </div>
         </table>
         
         <p>Click <a th:href="@{/student/register}">here</a> to add another student</p>
